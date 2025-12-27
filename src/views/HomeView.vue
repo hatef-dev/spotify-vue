@@ -41,8 +41,8 @@
       </div>
       <div class="flex items-center gap-x-6 px-2">
         <a href="" class="text-white/60 hover:text-white transition-all duration-300">Premium</a>
-        <button class="text-white/60 hover:text-white transition-all duration-300">Sign Up</button>
-        <button class="bg-white text-black px-8 font-bold py-2 rounded-full">Login</button>
+        <router-link to="/signup" class="text-white/60 hover:text-white transition-all duration-300">Sign Up</router-link>
+        <router-link to="/login" class="bg-white text-black px-8 font-bold py-2 rounded-full">Login</router-link>
       </div>
     </header>
   </div>
