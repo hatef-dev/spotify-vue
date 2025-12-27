@@ -26,6 +26,7 @@
             <p class="text-red-500"></p>
           </div>
           <div class="flex flex-col gap-y-1">
+            
             <label for="name" class="text-white">Name</label>
             <input
               type="text"
