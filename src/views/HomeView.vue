@@ -54,6 +54,7 @@ import IconHome from '@/components/icons/IconHome.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import IconBrowser from '@/components/icons/IconBrowser.vue'
 export default {
+  name: 'HomeView',
   components: {
     IconSpotify,
     IconHome,

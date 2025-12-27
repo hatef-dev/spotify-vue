@@ -12,6 +12,15 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss()
   ],
+  server: {
+    proxy: {
+      '/api-countries': {
+        target: 'https://www.apicountries.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api-countries/, '')
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

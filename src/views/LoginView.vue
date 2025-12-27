@@ -38,6 +38,7 @@
 <script>
 import IconSpotify from '@/components/icons/IconSpotify.vue'
 export default {
+    name: 'LoginView',
   components: {
     IconSpotify,
   },
