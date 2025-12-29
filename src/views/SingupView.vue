@@ -8,9 +8,11 @@
       <veeForm
         class="flex flex-col gap-y-5"
         :validation-schema="signupSchema"
+        :initial-values="initialValues"
         @submit="handleSubmit"
       >
         <div class="flex flex-col gap-y-3">
+          <!-- Email input-->
           <div class="flex flex-col gap-y-1">
             <label for="email" class="text-white">Email</label>
             <veeField
@@ -21,6 +23,7 @@
             />
             <ErrorMessage name="email" class="text-red-500" />
           </div>
+          <!-- Password input -->
           <div class="flex flex-col gap-y-1">
             <label for="password" class="text-white">Password</label>
             <veeField
@@ -31,6 +34,7 @@
             />
             <ErrorMessage name="password" class="text-red-500" />
           </div>
+          <!-- Confirm Password input -->
           <div class="flex flex-col gap-y-1">
             <label for="confirmPassword" class="text-white">Confirm Password</label>
             <veeField
@@ -41,6 +45,7 @@
             />
             <ErrorMessage name="confirmPassword" class="text-red-500" />
           </div>
+          <!-- Name input -->
           <div class="flex flex-col gap-y-1">
             <label for="name" class="text-white">Name</label>
             <veeField
@@ -51,6 +56,7 @@
             />
             <ErrorMessage name="name" class="text-red-500" />
           </div>
+          <!-- Age input -->
           <div class="flex flex-col gap-y-1">
             <label for="age" class="text-white">Age</label>
             <veeField
@@ -61,6 +67,7 @@
             />
             <ErrorMessage name="age" class="text-red-500" />
           </div>
+          <!-- Gender input -->
           <div class="flex flex-col gap-y-1">
             <label for="gender" class="text-white">Gender</label>
             <veeField
@@ -76,6 +83,7 @@
             </veeField>
             <ErrorMessage name="gender" class="text-red-500" />
           </div>
+          <!-- Country input -->
           <div class="flex flex-col gap-y-1">
             <label for="country" class="text-white">Country</label>
             <veeField
@@ -123,6 +131,15 @@ export default {
         gender: 'required',
         age: 'required|minValue:18',
         country: 'required|excluded:Afghanistan,Iran (Islamic Republic of)',
+      },
+      initialValues: {
+        email: '',
+        password: '',
+        confirmPassword: '',
+        name: '',
+        gender: 'male',
+        age: '',
+        country: 'United States of America',
       },
     }
   },
