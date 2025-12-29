@@ -173,7 +173,7 @@ export default {
       this.boxSubmit = true
       this.msgSubmit = 'Please wait...'
       this.boxColorSubmit = 'bg-blue-500'
-      this.msgPrivacy = 'We love you! and protect your privacy'
+      this.msgPrivacy = 'Please Wait...'
 
       try {
         await new Promise((resolve) => setTimeout(resolve, 1000))
