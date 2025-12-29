@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@vee-validate/rules": "^4.15.1",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
     "vee-validate": "^4.15.1",
