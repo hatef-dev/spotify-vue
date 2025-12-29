@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-darkSpotify flex justify-center items-center text-white overflow-x-hidden">
+  <div class="bg-darkSpotify text-white overflow-x-hidden">
     <div class="flex justify-center flex-col gap-y-10 items-center my-20">
       <div class="flex flex-col items-center gap-y-3 w-[400px] text-center">
         <IconSpotify class="text-white" />
@@ -112,6 +112,15 @@
         </div>
       </veeForm>
     </div>
+    <div v-if="boxSubmit" class="h-screen w-full top-0 left-0 flex items-center justify-center fixed z-10 bg-black/50">
+      <div
+        class="w-100 h-30 rounded-md flex flex-col items-start pl-6 gap-y-4 justify-center text-white font-bold"
+        :class="boxColorSubmit"
+      >
+        <h1 class="text-center">{{ msgSubmit }}</h1>
+        <p class="text-white/60 text-sm">{{ msgPrivacy }}</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -141,6 +150,10 @@ export default {
         age: '',
         country: 'United States of America',
       },
+      msgSubmit: 'Waiting for confirmation',
+      boxColorSubmit: 'bg-gray-500',
+      msgPrivacy: 'We love you! and protect your privacy',
+      boxSubmit: false,
     }
   },
   components: {
@@ -156,10 +169,31 @@ export default {
       //   console.log(countries)
       this.countries = countries
     },
-    handleSubmit(values) {
-      console.log(values)
+    async handleSubmit(values) {
+      this.boxSubmit = true
+      this.msgSubmit = 'Please wait...'
+      this.boxColorSubmit = 'bg-blue-500'
+      this.msgPrivacy = 'We love you! and protect your privacy'
 
-    }
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        this.msgSubmit = 'Registration successful!'
+        this.boxColorSubmit = 'bg-green-500'
+        this.msgPrivacy = 'You can enjoy our services!'
+
+        setTimeout(() => {
+          this.boxSubmit = false
+        }, 2000)
+      } catch (error) {
+        this.msgSubmit = 'An error occurred. Please try again.'
+        this.boxColorSubmit = 'bg-red-500'
+        this.msgPrivacy = 'Please check your information and try again.'
+
+        setTimeout(() => {
+          this.boxSubmit = false
+        }, 2000)
+      }
+    },
   },
 }
 </script>
