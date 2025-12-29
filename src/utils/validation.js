@@ -1,4 +1,4 @@
-import { Form as VeeForm, Field as VeeField, ErrorMessage } from 'vee-validate'
+import { Form as VeeForm, Field as VeeField, ErrorMessage, configure } from 'vee-validate'
 import {
   required,
   email,
@@ -20,9 +20,32 @@ export default {
     defineRule('email', email)
     defineRule('min', min)
     defineRule('minValue', minValue)
-    defineRule('confirmed', confirmed)
+    defineRule('passwordMismatch', confirmed)
     defineRule('alphaSpace', alphaSpace)
     defineRule('alpha', alpha)
-    defineRule('excluded', excluded)
+    defineRule('countryExcluded', excluded)
+    configure({
+      generateMessage: (ctx) => {
+        const messages = {
+          required: `The field ${ctx.field} is required.`,
+          min: `The field ${ctx.field} is too short.`,
+          alphaSpaces: `The field ${ctx.field} may only contain alphabetical characters and spaces.`,
+          email: `The field  must be a valid ${ctx.field}.`,
+          minValue: `The field ${ctx.field} is too low.`,
+          countryExcluded: `Due to restrictions, we do not accept users from this location.`,
+          passwordMismatch: `The passwords do not match.`,
+        };
+
+        const message = messages[ctx.rule.name]
+          ? messages[ctx.rule.name]
+          : `The field ${ctx.field} is invalid.`;
+
+        return message;
+      },
+      validateOnBlur: true,
+      validateOnChange: true,
+      validateOnInput: false,
+      validateOnModelUpdate: true,
+    });
   },
 }

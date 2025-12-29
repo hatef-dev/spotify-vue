@@ -102,7 +102,7 @@
                 {{ country.name }}
               </option>
             </veeField>
-            <ErrorMessage name="country" class="text-red-500" />
+            <ErrorMessage name="country" class="text-red-500 w-80" />
           </div>
         </div>
         <div class="mt-5">
@@ -126,11 +126,11 @@ export default {
       signupSchema: {
         email: 'required|email',
         password: 'required|min:6',
-        confirmPassword: 'required|confirmed:@password',
+        confirmPassword: 'required|passwordMismatch:@password',
         name: 'required|alphaSpace|alpha',
         gender: 'required',
         age: 'required|minValue:18',
-        country: 'required|excluded:Afghanistan,Iran (Islamic Republic of)',
+        country: 'required|countryExcluded:Afghanistan,Iran (Islamic Republic of)',
       },
       initialValues: {
         email: '',
