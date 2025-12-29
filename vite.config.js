@@ -17,7 +17,8 @@ export default defineConfig({
       '/api-countries': {
         target: 'https://www.apicountries.com',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api-countries/, '')
+        rewrite: path => path.replace(/^\/api-countries/, ''),
+        timeout: 10000
       }
     }
   },

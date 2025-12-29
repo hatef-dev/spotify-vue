@@ -1,11 +1,15 @@
 <template>
-  <div class="bg-darkSpotify  flex justify-center items-center text-white overflow-x-hidden">
+  <div class="bg-darkSpotify flex justify-center items-center text-white overflow-x-hidden">
     <div class="flex justify-center flex-col gap-y-10 items-center my-20">
-      <div class="flex flex-col items-center gap-y-3 w-[400px] text-center  ">
+      <div class="flex flex-col items-center gap-y-3 w-[400px] text-center">
         <IconSpotify class="text-white" />
         <h1 class="text-white text-5xl font-bold">Sing up to start listening</h1>
       </div>
-      <veeForm class="flex flex-col gap-y-5" :validation-schema="signupSchema">
+      <veeForm
+        class="flex flex-col gap-y-5"
+        :validation-schema="signupSchema"
+        @submit="handleSubmit"
+      >
         <div class="flex flex-col gap-y-3">
           <div class="flex flex-col gap-y-1">
             <label for="email" class="text-white">Email</label>
@@ -15,7 +19,7 @@
               id="email"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
             />
-            <ErrorMessage name="email" class="text-red-500"/>
+            <ErrorMessage name="email" class="text-red-500" />
           </div>
           <div class="flex flex-col gap-y-1">
             <label for="password" class="text-white">Password</label>
@@ -25,7 +29,7 @@
               id="password"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
             />
-            <ErrorMessage name="password" class="text-red-500"/>
+            <ErrorMessage name="password" class="text-red-500" />
           </div>
           <div class="flex flex-col gap-y-1">
             <label for="confirmPassword" class="text-white">Confirm Password</label>
@@ -35,10 +39,9 @@
               id="confirmPassword"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
             />
-            <ErrorMessage name="confirmPassword" class="text-red-500"/>
+            <ErrorMessage name="confirmPassword" class="text-red-500" />
           </div>
           <div class="flex flex-col gap-y-1">
-            
             <label for="name" class="text-white">Name</label>
             <veeField
               name="name"
@@ -46,7 +49,17 @@
               id="name"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
             />
-            <ErrorMessage name="name" class="text-red-500"/>
+            <ErrorMessage name="name" class="text-red-500" />
+          </div>
+          <div class="flex flex-col gap-y-1">
+            <label for="age" class="text-white">Age</label>
+            <veeField
+              name="age"
+              type="number"
+              id="age"
+              class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
+            />
+            <ErrorMessage name="age" class="text-red-500" />
           </div>
           <div class="flex flex-col gap-y-1">
             <label for="gender" class="text-white">Gender</label>
@@ -61,20 +74,27 @@
               <option value="female" class="text-black">Female</option>
               <option value="non-binary" class="text-black">Non-binary</option>
             </veeField>
-            <ErrorMessage name="gender" class="text-red-500"/>
+            <ErrorMessage name="gender" class="text-red-500" />
           </div>
           <div class="flex flex-col gap-y-1">
             <label for="country" class="text-white">Country</label>
             <veeField
-              as="select"   
+              as="select"
               name="country"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
               id="country"
             >
               <option value="" class="text-white/60" disabled selected>Select your country</option>
-              <option class="text-black" v-for="country in countries" :key="country.alpha2Code" :value="country.name">{{ country.name }}</option>
+              <option
+                class="text-black"
+                v-for="country in countries"
+                :key="country.alpha2Code"
+                :value="country.name"
+              >
+                {{ country.name }}
+              </option>
             </veeField>
-            <ErrorMessage name="country" class="text-red-500"/>
+            <ErrorMessage name="country" class="text-red-500" />
           </div>
         </div>
         <div class="mt-5">
@@ -98,11 +118,12 @@ export default {
       signupSchema: {
         email: 'required|email',
         password: 'required|min:6',
-        confirmPassword: 'required|min:6',
+        confirmPassword: 'required|confirmed:@password',
         name: 'required|alphaSpace|alpha',
         gender: 'required',
-        country: 'required',
-      }
+        age: 'required|minValue:18',
+        country: 'required|excluded:Afghanistan,Iran (Islamic Republic of)',
+      },
     }
   },
   components: {
@@ -115,9 +136,13 @@ export default {
     async getCountries() {
       const res = await fetch('/api-countries/countries')
       const countries = await res.json()
-    //   console.log(countries)
+      //   console.log(countries)
       this.countries = countries
+    },
+    handleSubmit(values) {
+      console.log(values)
+
     }
-  }
+  },
 }
 </script>

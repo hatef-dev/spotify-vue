@@ -1,5 +1,6 @@
 <template>
   <div class="bg-darkSpotify h-screen w-screen flex justify-center items-center text-white">
+    
     <div class="flex justify-center flex-col gap-y-10 items-center">
       <div class="flex flex-col items-center gap-y-3">
         <IconSpotify class="text-white" />

@@ -45,6 +45,8 @@
         <router-link to="/login" class="bg-white text-black px-8 font-bold py-2 rounded-full">Login</router-link>
       </div>
     </header>
+
+    
   </div>
 </template>
 
@@ -52,6 +54,7 @@
 import IconSpotify from '@/components/icons/IconSpotify.vue'
 import IconHome from '@/components/icons/IconHome.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import Test from '@/components/test.vue'
 import IconBrowser from '@/components/icons/IconBrowser.vue'
 export default {
   name: 'HomeView',
@@ -60,6 +63,7 @@ export default {
     IconHome,
     IconBrowser,
     IconSearch,
+    Test,
   },
   mounted() {
     window.addEventListener('keydown', this.handleKeydown)
