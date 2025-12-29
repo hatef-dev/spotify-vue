@@ -17,10 +17,19 @@
             <p class="text-red-500"></p>
           </div>
           <div class="flex flex-col gap-y-1">
-            <label for="email" class="text-white">Password</label>
+            <label for="password" class="text-white">Password</label>
             <input
               type="password"
               id="password"
+              class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
+            />
+            <p class="text-red-500"></p>
+          </div>
+          <div class="flex flex-col gap-y-1">
+            <label for="confirmPassword" class="text-white">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
               class="w-80 h-10 rounded-md px-2 border border-white/40 hover:border-white focus:outline-0 text-white focus:border-white"
             />
             <p class="text-red-500"></p>
